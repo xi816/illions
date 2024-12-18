@@ -1,0 +1,27 @@
+body {
+  font-family: "Georgia", "Times New Roman", "serif";
+}
+
+h1,h2,h3 {
+  font-family: "Verdana", "Times New Roman", "serif";
+  color: Maroon;
+}
+
+h1 {
+  font-size: 22px;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+table,th,td {
+  border: 1px solid #000000;
+  border-collapse: collapse;
+  padding: 3px;
+}
+

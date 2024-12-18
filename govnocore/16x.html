@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="../style.css">
+  </head>
+  <body>
+    <h1>Govno Core 16X</h1>
+    <div style="display: flex;">
+      <a href="#regs" style="margin: 3px;">Registers</a>
+      <a href="#inst" style="margin: 3px;">Instructions</a>
+    </div>
+
+  <hr>
+  <div id="regs">
+    <h1>Registers</h1>
+    <p>This section shows all Govno Core 16X registers.</p>
+    <h2>Program counter</h2>
+    <p>The program counter is a 16-bit register that stores the current instruction being executed.</p>
+    <p>It can be modified using <a href="#jmp">jumps</a>, <a href="#call">calls</a> and <a href="#ret">returns</a></p>
+  </div>
+
+  <div id="inst">
+    <h1>Instructions</h1>
+    <span id="inst-size"></span>
+    <h2>Instruction size</h2>
+    <p>Instruction size can be 1 bit (like RET - $33) or 2 bit (like LDA - $6605). 2-byte instructions in Govno Core 16X are called "word instructions". First byte of a word instruction defines its type (ex. LDA starts with $66, and page $66 is a register-manipulating operation).</p>
+    <table>
+      <tr>
+        <td>Page</td>
+        <td>Meaning</td>
+      </tr>
+      <tr>
+        <td>$0F</td>
+        <td>Control flow operation</td>
+      </tr>
+      <tr>
+        <td>$10</td>
+        <td>Stack operation</td>
+      </tr>
+      <tr>
+        <td>$66</td>
+        <td>Register operation</td>
+      </tr>
+    </table>
+
+    <br>
+    <span id="add"></span>
+    <h2>ADD - Add values</h2>
+    <p>The instruction adds the contents of two registers/memory location/immediate.</p>
+    <table>
+      <tr>
+        <th>Addressing mode</th>
+        <th>Opcode</th>
+        <th>Instruction</th>
+        <th>Size</th>
+      </tr>
+      <tr>
+        <td>rc8</td>
+        <td>$1000</td>
+        <td>Add %rc1 to %rc0</td>
+        <td>3</td>
+      </tr>
+      <tr>
+        <td>imm16</td>
+        <td>$1008</td>
+        <td>Add $i to A register</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>imm16</td>
+        <td>$1009</td>
+        <td>Add $i to B register</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>imm16</td>
+        <td>$100A</td>
+        <td>Add $i to C register</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>imm16</td>
+        <td>$100B</td>
+        <td>Add $i to D register</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>imm16</td>
+        <td>$100C</td>
+        <td>Add $i to S register</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>imm16</td>
+        <td>$100D</td>
+        <td>Add $i to G register</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>imm8</td>
+        <td>$100E</td>
+        <td>Add $i to H register</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>imm8</td>
+        <td>$100F</td>
+        <td>Add $i to L register</td>
+        <td>4</td>
+      </tr>
+    </table>
+
+    <span id="and"></span>
+    <h2>AND - Bitwise AND</h2>
+    <p>Performing the bitwise AND to two registers.</p>
+    <table>
+      <tr>
+        <th>Addressing mode</th>
+        <th>Opcode</th>
+        <th>Instruction</th>
+        <th>Size</th>
+      </tr>
+      <tr>
+        <td>rc8</td>
+        <td>$10D8</td>
+        <td>Bitwise and for %rc0 and %rc1</td>
+        <td>3</td>
+      </tr>
+    </table>
+
+    <span id="clc"></span>
+    <h2>CLC - Clear carry</h2>
+    <p>Clearing the carry flag.</p>
+    <table>
+      <tr>
+        <th>Addressing mode</th>
+        <th>Opcode</th>
+        <th>Instruction</th>
+        <th>Size</th>
+      </tr>
+      <tr>
+        <td>Implied</td>
+        <td>$36</td>
+        <td>Clear carry</td>
+        <td>1</td>
+      </tr>
+    </table>
+
+    <span id="clc"></span>
+    <h2>CMP - Compare</h2>
+    <p>Compare registers/immediate values and set the flags.</p>
+    <p>Flags after the instruction:</p>
+    <table>
+      <tr>
+        <td>C</td>
+        <td>Carry flag</td>
+        <td>Not affected</td>
+      </tr>
+      <tr>
+        <td>Z</td>
+        <td>Zero flag</td>
+        <td>Set if values are equal</td>
+      </tr>
+    </table>
+
+    <p></p><table>
+      <tr>
+        <th>Addressing mode</th>
+        <th>Opcode</th>
+        <th>Instruction</th>
+        <th>Size</th>
+      </tr>
+      <tr>
+        <td>rc8</td>
+        <td>$10F6</td>
+        <td>Compare %rc0 and %rc1</td>
+        <td>3</td>
+      </tr>
+      <tr>
+        <td>reg8,imm16</td>
+        <td>$10EE</td>
+        <td>Compare %r and $i</td>
+        <td>3</td>
+      </tr>
+    </table>
+
+    <span id="lda"></span>
+    <h2>LDA - Load into A register</h2>
+    <p>The instruction loads the contents of register/memory location/immediate into the A register.</p>
+    <table>
+      <tr>
+        <th>Addressing mode</th>
+        <th>Opcode</th>
+        <th>Instruction</th>
+        <th>Size</th>
+      </tr>
+      <tr>
+        <td>imm16</td>
+        <td>$6605</td>
+        <td>Set %a to $i</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>reg8</td>
+        <td>$6641</td>
+        <td>Set %a to %r</td>
+        <td>3</td>
+      </tr>
+      <tr>
+        <td>addr16</td>
+        <td>$6692</td>
+        <td>Set %a to [$i]</td>
+        <td>4</td>
+      </tr>
+    </table>
+
+    </div>
+  </body>
+</html>
+
