@@ -4,8 +4,13 @@
     <link rel="stylesheet" href="../style.css">
   </head>
   <body>
-    <h1>Govno Core 16X</h1>
-    <div style="display: flex;">
+    <h2 id="header" style="color: #fdfefe; background-color: #336699;
+                           padding: 10px;
+                           font-size: 24px;">
+      Govno Core 16X
+    </h2>
+    <div style="display: flex; background-color: #EEEEEE; font-family: 'Verdana', 'sans'; font-size: 14px;">
+      <a href="../index.html" style="margin: 3px;">Back</a>
       <a href="#regs" style="margin: 3px;">Registers</a>
       <a href="#inst" style="margin: 3px;">Instructions</a>
     </div>
@@ -23,11 +28,15 @@
     <h1>Instructions</h1>
     <span id="inst-size"></span>
     <h2>Instruction size</h2>
-    <p>Instruction size can be 1 bit (like RET - $33) or 2 bit (like LDA - $6605). 2-byte instructions in Govno Core 16X are called "word instructions". First byte of a word instruction defines its type (ex. LDA starts with $66, and page $66 is a register-manipulating operation).</p>
+    <p>Instruction size can be 1 bit (like RET - $33) or 2 bit (like LDA - $6605). 2-byte instructions in Govno Core 16X are called "word instructions". First byte of a word instruction defines its type (ex. LDA starts with $66, and page $66 is a word-sized register-manipulating operation).</p>
     <table>
       <tr>
         <td>Page</td>
         <td>Meaning</td>
+      </tr>
+      <tr>
+        <td>No page</td>
+        <td>General purpose operation</td>
       </tr>
       <tr>
         <td>$0F</td>
@@ -39,7 +48,11 @@
       </tr>
       <tr>
         <td>$66</td>
-        <td>Register operation</td>
+        <td>Register word-size operation</td>
+      </tr>
+      <tr>
+        <td>$83</td>
+        <td>Register byte-size operation</td>
       </tr>
     </table>
 
@@ -197,20 +210,62 @@
       <tr>
         <td>imm16</td>
         <td>$6605</td>
-        <td>Set %a to $i</td>
+        <td>Set A to an immediate value</td>
         <td>4</td>
       </tr>
       <tr>
-        <td>reg8</td>
-        <td>$6641</td>
-        <td>Set %a to %r</td>
+        <td>mz8</td>
+        <td>$6615</td>
+        <td>Set A to a Zero Page address value</td>
+        <td>3</td>
+      </tr>
+      <tr>
+        <td>mz8.s</td>
+        <td>$6625</td>
+        <td>Set A to a Zero Page address value + S</td>
+        <td>3</td>
+      </tr>
+      <tr>
+        <td>mz8.g</td>
+        <td>$6635</td>
+        <td>Set A to a Zero Page address value + G</td>
         <td>3</td>
       </tr>
       <tr>
         <td>addr16</td>
-        <td>$6692</td>
-        <td>Set %a to [$i]</td>
+        <td>$6655</td>
+        <td>Set A to a memory address value</td>
         <td>4</td>
+      </tr>
+      <tr>
+        <td>addr16,s</td>
+        <td>$6665</td>
+        <td>Set A to a memory address value + S</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>addr16,g</td>
+        <td>$6675</td>
+        <td>Set A to a memory address value + G</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>imm16,s</td>
+        <td>$6685</td>
+        <td>Set A to an immediate value + S</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>imm16,g</td>
+        <td>$6695</td>
+        <td>Set A to an immediate value + G</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>reg16</td>
+        <td>$66A5</td>
+        <td>Set A to a register value</td>
+        <td>3</td>
       </tr>
     </table>
 

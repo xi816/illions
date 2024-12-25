@@ -1,3 +1,7 @@
+*,#header {
+  margin: 0;
+  padding: 0;
+}
 body {
   font-family: "Georgia", "Times New Roman", "serif";
 }
@@ -8,10 +12,12 @@ h1,h2,h3 {
 }
 
 h1 {
+  margin: 5px;
   font-size: 22px;
 }
 
 h2 {
+  margin-left: 15px;
   font-size: 20px;
 }
 
@@ -19,9 +25,21 @@ h3 {
   font-size: 18px;
 }
 
+p {
+  margin: 10px;
+}
+a {
+  color: #202020;
+}
+a:hover {
+  color: #3030A0;
+}
+
 table,th,td {
   border: 1px solid #000000;
   border-collapse: collapse;
   padding: 3px;
+  margin: 15px;
+  margin-bottom: 5px;
 }
 
