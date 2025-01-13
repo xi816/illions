@@ -20,11 +20,11 @@
     <h1>Registers</h1>
     <p>This section shows all Govno Core 16X registers.</p>
     <h2>General purpose registers</h2>
-    <p>General purpose registers are 16-bit registers that can be used to save data for user program purposes.</p>
+    <p><a href="https://en.wikipedia.org/wiki/General_purpose_register">General purpose registers</a> are 16-bit registers that can be used to save data for user program purposes.</p>
     <p>Also see <a href="#reg-rc">Register cluster</a></p>
     <table id="regtable">
       <tr>
-        <td>Nibble</td>
+        <td><a href="https://en.wikipedia.org/wiki/Nibble">Nibble</a></td>
         <td>GP register</td>
       </tr>
       <tr><td>$0</td><td>A/AX</td></tr>
@@ -54,7 +54,7 @@
     <p>It can be modified using <a href="#jmp">jumps</a>, <a href="#call">calls</a> and <a href="#ret">returns</a></p>
     <h1 id="reg-rc">Register cluster</h1>
     <p>Register cluster is a byte containing 2 register addresses. The address to the register is 4 bits long (there are 16 cluster-addressable registers). So, one byte can contain 2 registers in it.</p>
-    <p>Example register cluster: $41 → 0100|0001 → %s|%a</p>
+    <p>Example register cluster: $41 → 0100|0001 → %s|%b</p>
     <p>See <a href="#regtable">register table</a> to find the addresses for every register.</p>
   </div>
 
