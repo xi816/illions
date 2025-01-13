@@ -19,16 +19,50 @@
   <div id="regs">
     <h1>Registers</h1>
     <p>This section shows all Govno Core 16X registers.</p>
+    <h2>General purpose registers</h2>
+    <p>General purpose registers are 16-bit registers that can be used to save data for user program purposes.</p>
+    <p>Also see <a href="#reg-rc">Register cluster</a></p>
+    <table id="regtable">
+      <tr>
+        <td>Nibble</td>
+        <td>GP register</td>
+      </tr>
+      <tr><td>$0</td><td>A/AX</td></tr>
+      <tr><td>$1</td><td>B/BX</td></tr>
+      <tr><td>$2</td><td>C/CX</td></tr>
+      <tr><td>$3</td><td>D/DX</td></tr>
+      <tr><td>$4</td><td>S/SI</td></tr>
+      <tr><td>$5</td><td>G/GI</td></tr>
+      <tr><td>$6</td><td>SP</td></tr>
+      <tr><td>$7</td><td>BP</td></tr>
+      <tr><td>$8</td><td>E/EX</td></tr>
+      <tr><td>$9</td><td>F/FX</td></tr>
+      <tr><td>$A</td><td>H/HX</td></tr>
+      <tr><td>$B</td><td>L/LX</td></tr>
+      <tr><td>$C</td><td>X</td></tr>
+      <tr><td>$D</td><td>Y</td></tr>
+      <tr><td>$E</td><td>IX</td></tr>
+      <tr><td>$F</td><td>IY</td></tr>
+    </table>
+
+    <h2>Stack pointer</h2>
+    <p>The stack pointer is a 16-bit register that is pointing to the (lowest byte of a 16-bit value on the stack)-1, or, to the top of the stack.</p>
+    <h2>Base pointer</h2>
+    <p>The base pointer is a 16-bit register that is pointing somewhere in the stack. Do i look like i use it?</p>
     <h2>Program counter</h2>
     <p>The program counter is a 16-bit register that stores the current instruction being executed.</p>
     <p>It can be modified using <a href="#jmp">jumps</a>, <a href="#call">calls</a> and <a href="#ret">returns</a></p>
+    <h1 id="reg-rc">Register cluster</h1>
+    <p>Register cluster is a byte containing 2 register addresses. The address to the register is 4 bits long (there are 16 cluster-addressable registers). So, one byte can contain 2 registers in it.</p>
+    <p>Example register cluster: $41 → 0100|0001 → %s|%a</p>
+    <p>See <a href="#regtable">register table</a> to find the addresses for every register.</p>
   </div>
 
   <div id="inst">
     <h1>Instructions</h1>
     <span id="inst-size"></span>
     <h2>Instruction size</h2>
-    <p>Instruction size can be 1 bit (like RET - $33) or 2 bit (like LDA - $6605). 2-byte instructions in Govno Core 16X are called "word instructions". First byte of a word instruction defines its type (ex. LDA starts with $66, and page $66 is a word-sized register-manipulating operation).</p>
+    <p>Instruction size can be 1 byte (like RET - $33) or 2 byte (like <a href="#lda--i">LDA[i]</a> - $6605). 2-byte instructions in Govno Core 16X are called "word instructions". First byte of a word instruction defines its type (ex. LDA starts with $66, and page $66 is a word-sized register-manipulating operation).</p>
     <table>
       <tr>
         <td>Page</td>
@@ -198,7 +232,7 @@
     </table>
 
     <span id="lda"></span>
-    <h2>LDA - Load into A register</h2>
+    <h2>LDA - Load value into A register</h2>
     <p>The instruction loads the contents of register/memory location/immediate into the A register.</p>
     <table>
       <tr>
@@ -207,7 +241,7 @@
         <th>Instruction</th>
         <th>Size</th>
       </tr>
-      <tr>
+      <tr id="lda--i">
         <td>imm16</td>
         <td>$6605</td>
         <td>Set A to an immediate value</td>
