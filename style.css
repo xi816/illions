@@ -44,3 +44,13 @@ table,th,td {
   margin-bottom: 5px;
 }
 
+pre {
+  display: table;
+  background-color: #D8D8D8;
+  border-radius: 5px;
+  border-left: 3px solid #303030;
+  padding: 5px;
+  padding-right: 60px;
+  margin: 25px;
+}
+
